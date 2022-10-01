@@ -1,7 +1,7 @@
 ### Oii! Eu sou o Enzo Rodrigues 😎
 
 - 🔭 Estudante de Sistemas para Internet - IFRS Campus Porto Alegre
-- 🌱 Estudando Swift/ UIKit/ xCode
+- 🌱 Estudando Swift - UIKit - xCode
 
 ##
 
