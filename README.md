@@ -1,7 +1,7 @@
 ### Oii! Eu sou o Enzo Rodrigues 😎
 
 - 🔭 Estudante de Sistemas para Internet - IFRS Campus Porto Alegre
-- 🌱 Estudando Swift - UIKit - xCode
+- 🌱 Estudando HTML - CSS - JavaScript
 
 ##
 
@@ -13,6 +13,7 @@
 
 <div style="display: inline_block"><br>
   <img align="center" alt="Enzo-Swift" height="45" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg">
+  <img align="center" alt="Enzo-Swift" height="45" width="60" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg">
 </div>
 
 ##
