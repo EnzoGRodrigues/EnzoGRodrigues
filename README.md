@@ -1,6 +1,6 @@
 ### Oii! Eu sou o Enzo Rodrigues 😎
 
-- 🔭 Estudante de Sistemas para Internet - IFRS Campus Porto Alegre
+- 🔭 Estudante de ADS - IFRS Campus Hortolândia/SP
 - 🌱 Estudando HTML - CSS - JavaScript
 
 ##
