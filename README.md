@@ -12,8 +12,8 @@
 </div>
 
 <div style="display: inline_block"><br>
-  <img align="center" alt="Enzo-Swift" height="45" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg">
-  <img align="center" alt="Enzo-Swift" height="45" width="60" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg">
+  <img align="center" alt="Enzo-nodejs" height="45" width="60" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fnodejs_919825&psig=AOvVaw0PxKC_e109YFQNI5wyShwc&ust=1756845019095000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCICVhOyzuI8DFQAAAAAdAAAAABAE">
+  <img align="center" alt="Enzo-js" height="45" width="60" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg">
 </div>
 
 ##
