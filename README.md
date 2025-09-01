@@ -1,7 +1,7 @@
 ### Oii! Eu sou o Enzo Rodrigues 😎
 
 - 🔭 Estudante de ADS - IFRS Campus Hortolândia/SP
-- 🌱 Estudando HTML - CSS - JavaScript
+- 🌱 Estudando HTML - CSS - JavaScript - Node.js
 
 ##
 
