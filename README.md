@@ -1,25 +1,42 @@
-### Oii! Eu sou o Enzo Rodrigues 😎
+![](https://komarev.com/ghpvc/?username=iuricode&color=006bed)
 
-- 🔭 Estudante de ADS - IFSP Campus Hortolândia/SP
-- 🌱 Desenvolvedor Back-end
+# Olá, eu sou Enzo!
 
-##
+- 🤔 Explorando novas tecnologias e desenvolvendo soluções de software.
+- 🎓 Estudando ADS no IFSP.
+- 💼 Desenvolvedor Back-end
+- 🌱 Aprendendo mais sobre JavaScript | Node.js | Typescript | SQL
 
-<div align="center">
-  <a href="https://github.com/EnzoGRodrigues">
-  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=EnzoGRodrigues&show_icons=true&theme=aura_dark&include_all_commits=true&count_private=true"/>
-  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=EnzoGRodrigues&layout=compact&langs_count=7&theme=aura_dark"/>
-</div>
+## Minhas Skills
 
-<div style="display: inline_block"><br>
-  <img align="center" alt="Enzo-nodejs" height="45" width="60" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg">
-  <img align="center" alt="Enzo-js" height="45" width="60" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg">
-</div>
+**Aplicações e dados**
 
-##
+![JavaScript](https://img.shields.io/badge/-JavaScript-333333?style=flat&logo=javascript)
+![Node.js](https://img.shields.io/badge/-Node.js-333333?style=flat&logo=node.js)
+![HTML5](https://img.shields.io/badge/-HTML5-333333?style=flat&logo=HTML5)
+![CSS](https://img.shields.io/badge/-CSS3-333333?style=flat&logo=CSS3&logoColor=1572B6)
+![MySQL](https://img.shields.io/badge/-MySQL-333333?style=flat&logo=mysql)
 
-<div> 
-  <a href="https://www.instagram.com/_enzooyy_/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
-  <a href = "mailto:enzorodrigues272@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="https://www.linkedin.com/in/enzogrodrigues/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-</div>
+**Utilidades**
+
+![Insomnia](https://img.shields.io/badge/-Insomnia-333333?style=flat&logo=insomnia)
+![Postman](https://img.shields.io/badge/-Postman-333333?style=flat&logo=postman)
+
+**DevOps**
+
+![Git](https://img.shields.io/badge/-Git-333333?style=flat&logo=git)
+![GitHub](https://img.shields.io/badge/-GitHub-333333?style=flat&logo=github)
+![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
+
+<br/>
+
+<a href="https://github.com/EnzoGRodrigues" title="Perfil do Enzo">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=EnzoGRodrigues&theme=dracula&show_icons=true" />
+</a>
+
+## Onde me encontrar
+
+[![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/enzo-rodrigues/)](https://www.linkedin.com/in/enzo-rodrigues/)
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-006bed?style=flat-square&logo=Gmail&logoColor=white&link=mailto:enzorodrigues272@gmail.com)](mailto:enzorodrigues272@gmail.com)
+[![GitHub](https://img.shields.io/github/followers/EnzoGRodrigues?label=follow&style=social)](https://github.com/EnzoGRodrigues)
+[![Instagram](https://img.shields.io/badge/-Instagram-%23E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/_enzooyy_/)
