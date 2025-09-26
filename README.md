@@ -1,8 +1,5 @@
 ![banner](https://capsule-render.vercel.app/api?type=cylinder&color=gradient&height=140&section=header&text=Olá,%20sou%20Enzo%20Rodrigues%20👨🏻‍💻&fontSize=28&fontColor=ffffff&animation=fadeIn&gradient=#76030F,#121B67)
 
-
-
-
 # 👋🏻 Bem-vindo ao meu perfil
 
 Atualmente, curso Análise e Desenvolvimento de Sistemas (IFSP) e atuo como Desenvolvedor Back-end, com foco em JavaScript, Node.js, TypeScript e SQL. Sempre em busca de novos desafios e aprendizados. Sempre explorando novas tecnologias e desenvolvendo soluções em software. 🚀
