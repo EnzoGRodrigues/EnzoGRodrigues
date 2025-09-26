@@ -1,7 +1,7 @@
 ### Oii! Eu sou o Enzo Rodrigues 😎
 
 - 🔭 Estudante de ADS - IFSP Campus Hortolândia/SP
-- 🌱 Estudando HTML - CSS - JavaScript - Node.js
+- 🌱 Desenvolvedor Back-end
 
 ##
 
