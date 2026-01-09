@@ -27,13 +27,6 @@ Atualmente, curso Análise e Desenvolvimento de Sistemas (IFSP) e atuo como Dese
 ![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
 
 
-## 📊 GitHub Stats  
-<div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=EnzoGRodrigues&show_icons=true&include_all_commits=true&count_private=true&theme=react&hide_border=true&bg_color=1F222E&title_color=F85D7F&rank_icon=github&icon_color=F8D866"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=EnzoGRodrigues&layout=compact&theme=react&hide_border=true&bg_color=1F222E&title_color=F85D7F&icon_color=F8D866&hide=HTML,Jupyter%20Notebook"/>
-</div>
-
-
 ## 🌍 Vamos nos conectar?
 
 [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/enzo-rodrigues/)](https://www.linkedin.com/in/enzo-rodrigues/)
