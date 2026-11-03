@@ -143,24 +143,69 @@ def barra_de_menus(t):
     return "".join(out)
 
 
+def macbook(cx, cy):
+    """MacBook visto de frente, como a imagem do aparelho no "Sobre" do macOS:
+    tampa com moldura preta e notch, tela azul e base de alumínio mais larga."""
+    lw, lh = 140, 92                 # tampa
+    lx, ly = cx - lw / 2, cy - 52
+    b = ly + lh                      # dobradiça
+    bw = 168                         # base
+    bx = cx - bw / 2
+    tx, ty, tw, th = lx + 4.5, ly + 4.5, lw - 9, lh - 10   # tela
+    ty_c = ty + th / 2
+    anel = 2 * 3.14159 * 9
+    return (f'<ellipse cx="{cx}" cy="{b + 9}" rx="{bw / 2 - 8}" ry="3.2" fill="#000000" '
+            f'fill-opacity="0.3" filter="url(#borrar-leve)"/>'
+            # tampa: abre a partir da dobradiça, como no diagrama de plataformas
+            f'<g class="tampa-mac">'
+            f'<rect x="{lx - 1.6}" y="{ly - 1.6}" width="{lw + 3.2}" height="{lh + 1.6}" rx="8.6" '
+            f'fill="url(#mac-aro)"/>'
+            f'<rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" rx="7" fill="#0A0A0C"/>'
+            f'<clipPath id="mac-recorte"><rect x="{tx}" y="{ty}" width="{tw}" height="{th}" rx="2.5"/>'
+            f'</clipPath>'
+            f'<g clip-path="url(#mac-recorte)">'
+            f'<rect x="{tx}" y="{ty}" width="{tw}" height="{th}" fill="url(#mac-tela)"/>'
+            f'<ellipse cx="{lx + 46}" cy="{ly + 28}" rx="58" ry="26" fill="#FFFFFF" fill-opacity="0.16"/>'
+            # boot: tela escura com um anel carregando, que some e revela o papel de parede
+            f'<g class="boot-mac"><rect x="{tx}" y="{ty}" width="{tw}" height="{th}" fill="#0E0F14"/>'
+            f'<circle cx="{cx}" cy="{ty_c}" r="9" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" '
+            f'stroke-width="2"/>'
+            f'<circle class="gira" cx="{cx}" cy="{ty_c}" r="9" fill="none" stroke="#6AA8FF" '
+            f'stroke-width="2" stroke-linecap="round" stroke-dasharray="{anel * 0.28:.1f} {anel:.1f}"/>'
+            f'</g></g>'
+            f'<rect x="{cx - 10}" y="{ly + 2}" width="20" height="6.5" rx="2.4" fill="#0A0A0C"/></g>'
+            # base: começa um pouco mais larga e assenta enquanto a tampa abre
+            f'<g class="base-mac">'
+            f'<path d="M{bx},{b} H{bx + bw} V{b + 3.6} Q{bx + bw},{b + 7} {bx + bw - 7},{b + 7} '
+            f'H{bx + 7} Q{bx},{b + 7} {bx},{b + 3.6} Z" fill="url(#mac-base)"/>'
+            f'<line x1="{bx + 2}" y1="{b + 0.5}" x2="{bx + bw - 2}" y2="{b + 0.5}" stroke="#FFFFFF" '
+            f'stroke-opacity="0.75"/>'
+            f'<rect x="{cx - 14}" y="{b}" width="28" height="2.4" rx="1.2" fill="#000000" '
+            f'fill-opacity="0.2"/></g>')
+
+
+# Abertura da tampa: mesma curva e duração do diagrama (e da referência da ToDesktop).
+# Fica depois de CSS_BASE no <style>, com o próprio bloco de "reduzir movimento".
+CSS_MAC = """
+@keyframes tampa-mac{from{transform:scaleY(.015)}to{transform:none}}
+@keyframes base-mac{from{transform:scaleX(1.08)}to{transform:none}}
+@keyframes some{0%,60%{opacity:1}100%{opacity:0}}
+@keyframes gira{to{transform:rotate(360deg)}}
+.tampa-mac{animation:tampa-mac 1.5s cubic-bezier(.76,0,.24,1) .35s both;transform-box:fill-box;transform-origin:50% 100%}
+.base-mac{animation:base-mac 1.5s cubic-bezier(.76,0,.24,1) .35s both;transform-box:fill-box;transform-origin:50% 50%}
+.boot-mac{animation:some 1.4s ease-in 1.6s both}
+.gira{animation:gira .7s linear 1.4s 4;transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:reduce){.tampa-mac,.base-mac,.gira{animation:none}.boot-mac{animation:none;opacity:0}}
+"""
+
+
 def janela_sobre(t, x, y, w, h):
     cx = x + w / 2
     out = [f'<g class="janela" style="animation-delay:.05s">',
            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{t["janela"]}" '
            f'filter="url(#sombra)"/>',
            semaforo(x + 20, y + 20, so_fechar=True, t=t)]
-    # ícone de app com a inicial, como no painel "Sobre" de um app do macOS
-    s = 104
-    ax, ay = cx - s / 2, y + 106 - s / 2
-    out.append(f'<clipPath id="recorte-app"><rect x="{ax}" y="{ay}" width="{s}" height="{s}" rx="24"/>'
-               f'</clipPath><g filter="url(#sombraapp)"><rect x="{ax}" y="{ay}" width="{s}" '
-               f'height="{s}" rx="24" fill="url(#icone)"/></g>'
-               f'<rect x="{ax}" y="{ay}" width="{s}" height="{s / 2}" fill="url(#brilho)" '
-               f'clip-path="url(#recorte-app)"/>'
-               f'<rect x="{ax + 0.5}" y="{ay + 0.5}" width="{s - 1}" height="{s - 1}" rx="23.5" '
-               f'fill="none" stroke="#FFFFFF" stroke-opacity="0.22"/>'
-               f'<text class="arred" x="{cx}" y="{ay + s / 2 + 21}" font-size="60" font-weight="800" '
-               f'fill="#FFFFFF" text-anchor="middle">E</text>')
+    out.append(macbook(cx, y + 106))
     out.append(f'<text class="sans" x="{cx}" y="{y + 194}" font-size="24" font-weight="700" '
                f'letter-spacing="-0.3" fill="{t["texto"]}" text-anchor="middle">{esc(NOME)}</text>')
     out.append(f'<text class="sans" x="{cx}" y="{y + 215}" font-size="12" '
@@ -341,6 +386,20 @@ def dock(t, base_y):
     return "".join(out)
 
 
+def defs_macbook(nome_tema):
+    """Gradientes do MacBook da janela "Sobre"; o alumínio fica um tom abaixo no tema escuro."""
+    aro, base = ((("#E6E6EA", "#A9A9AF"), ("#F0F0F3", "#B4B4B9")) if nome_tema == "light"
+                 else (("#BDBDC3", "#6F6F76"), ("#CFCFD4", "#8A8A90")))
+    return (f'<linearGradient id="mac-aro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{aro[0]}"/>'
+            f'<stop offset="1" stop-color="{aro[1]}"/></linearGradient>'
+            f'<linearGradient id="mac-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{base[0]}"/>'
+            f'<stop offset="1" stop-color="{base[1]}"/></linearGradient>'
+            f'<linearGradient id="mac-tela" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#8CC4FF"/>'
+            f'<stop offset=".5" stop-color="#3F8EF6"/><stop offset="1" stop-color="#1D5FD6"/></linearGradient>'
+            f'<filter id="borrar-leve" x="-20%" y="-300%" width="140%" height="700%">'
+            f'<feGaussianBlur stdDeviation="3"/></filter>')
+
+
 def desenhar(nome_tema):
     t = TEMAS[nome_tema]
     defs_pp, papel = papel_de_parede(t)
@@ -349,17 +408,14 @@ def desenhar(nome_tema):
             f'<linearGradient id="icone" x1="0" y1="0" x2="1" y2="1">'
             f'<stop offset="0" stop-color="#0A84FF"/><stop offset=".55" stop-color="#5E5CE6"/>'
             f'<stop offset="1" stop-color="#BF5AF2"/></linearGradient>'
-            f'<linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1">'
-            f'<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.32"/>'
-            f'<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'
-            f"{sombra('sombraapp', 0.28, dy=6, desvio=8)}"
+            f"{defs_macbook(nome_tema)}"
             f'<clipPath id="tela"><rect width="{W}" height="{H}" rx="18"/></clipPath></defs>')
     partes = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
         f'role="img" aria-label="Área de trabalho no estilo macOS de {esc(NOME)}">',
         f"<title>{esc(NOME)}: Sobre o Enzo, Terminal com fastfetch e sobre.md, e o Dock com a stack"
         f"</title>",
-        f"<style>{CSS_BASE}</style>",
+        f"<style>{CSS_BASE}{CSS_MAC}</style>",
         defs,
         '<g clip-path="url(#tela)">',
         papel,
