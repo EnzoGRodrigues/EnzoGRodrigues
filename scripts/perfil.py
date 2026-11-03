@@ -15,7 +15,6 @@ Os textos ficam nas constantes logo abaixo; mude e rode de novo:
 Os ícones do Dock vêm de scripts/icones.json (Simple Icons, CC0).
 Só usa a biblioteca padrão do Python.
 """
-import base64
 import datetime
 import json
 import os
@@ -96,11 +95,6 @@ def icones():
         return json.load(f)["icones"]
 
 
-def avatar_base64():
-    with open(os.path.join(ASSETS, "avatar.jpg"), "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-
 def papel_de_parede(t):
     defs = (f'<linearGradient id="pp" x1="0" y1="0" x2="1" y2="1">'
             f'<stop offset="0" stop-color="{t["fundo_a"]}"/>'
@@ -155,14 +149,19 @@ def janela_sobre(t, x, y, w, h):
            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{t["janela"]}" '
            f'filter="url(#sombra)"/>',
            semaforo(x + 20, y + 20, so_fechar=True, t=t)]
-    # foto
-    cy, r = y + 106, 54
-    out.append(f'<clipPath id="foto"><circle cx="{cx}" cy="{cy}" r="{r}"/></clipPath>'
-               f'<image href="data:image/jpeg;base64,{avatar_base64()}" x="{cx - r}" y="{cy - r}" '
-               f'width="{2 * r}" height="{2 * r}" clip-path="url(#foto)" '
-               f'preserveAspectRatio="xMidYMid slice"/>'
-               f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{t["borda"]}" '
-               f'stroke-opacity="0.1" stroke-width="1"/>')
+    # ícone de app com a inicial, como no painel "Sobre" de um app do macOS
+    # (o mesmo do topo do diagrama em plataformas.py)
+    s = 104
+    ax, ay = cx - s / 2, y + 106 - s / 2
+    out.append(f'<clipPath id="recorte-app"><rect x="{ax}" y="{ay}" width="{s}" height="{s}" rx="24"/>'
+               f'</clipPath><g filter="url(#sombraapp)"><rect x="{ax}" y="{ay}" width="{s}" '
+               f'height="{s}" rx="24" fill="url(#icone)"/></g>'
+               f'<rect x="{ax}" y="{ay}" width="{s}" height="{s / 2}" fill="url(#brilho)" '
+               f'clip-path="url(#recorte-app)"/>'
+               f'<rect x="{ax + 0.5}" y="{ay + 0.5}" width="{s - 1}" height="{s - 1}" rx="23.5" '
+               f'fill="none" stroke="#FFFFFF" stroke-opacity="0.22"/>'
+               f'<text class="arred" x="{cx}" y="{ay + s / 2 + 21}" font-size="60" font-weight="800" '
+               f'fill="#FFFFFF" text-anchor="middle">E</text>')
     out.append(f'<text class="sans" x="{cx}" y="{y + 194}" font-size="24" font-weight="700" '
                f'letter-spacing="-0.3" fill="{t["texto"]}" text-anchor="middle">{esc(NOME)}</text>')
     out.append(f'<text class="sans" x="{cx}" y="{y + 215}" font-size="12" '
@@ -351,6 +350,10 @@ def desenhar(nome_tema):
             f'<linearGradient id="icone" x1="0" y1="0" x2="1" y2="1">'
             f'<stop offset="0" stop-color="#0A84FF"/><stop offset=".55" stop-color="#5E5CE6"/>'
             f'<stop offset="1" stop-color="#BF5AF2"/></linearGradient>'
+            f'<linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.32"/>'
+            f'<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'
+            f"{sombra('sombraapp', 0.28, dy=6, desvio=8)}"
             f'<clipPath id="tela"><rect width="{W}" height="{H}" rx="18"/></clipPath></defs>')
     partes = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
