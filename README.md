@@ -30,7 +30,7 @@ Apps para iPhone, Android e web, do banco de dados até a App Store, com agentes
 
 <br /><br />
 
-<img src="./assets/plataformas.svg" width="860" alt="Diagrama: o ícone E liga a um card de código, que se ramifica para três aparelhos: um iPhone (iOS, App Store), um MacBook que abre a tampa e mostra um app web, e um celular Android (Google Play)" />
+<img src="./assets/plataformas.svg" width="860" alt="Diagrama: um card de código se ramifica para três aparelhos: um iPhone (iOS, App Store), um MacBook que abre a tampa e mostra um app web, e um celular Android (Google Play)" />
 
 </div>
 
