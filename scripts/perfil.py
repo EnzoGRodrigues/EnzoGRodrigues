@@ -150,7 +150,6 @@ def janela_sobre(t, x, y, w, h):
            f'filter="url(#sombra)"/>',
            semaforo(x + 20, y + 20, so_fechar=True, t=t)]
     # ícone de app com a inicial, como no painel "Sobre" de um app do macOS
-    # (o mesmo do topo do diagrama em plataformas.py)
     s = 104
     ax, ay = cx - s / 2, y + 106 - s / 2
     out.append(f'<clipPath id="recorte-app"><rect x="{ax}" y="{ay}" width="{s}" height="{s}" rx="24"/>'

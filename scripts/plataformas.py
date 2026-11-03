@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Desenha o diagrama "um código, três plataformas" do perfil: o ícone em cima,
-um card de vidro no meio e três aparelhos embaixo (iPhone, MacBook com a web
-e Android), ligados por traçados de circuito. Gera assets/plataformas.svg.
+Desenha o diagrama "um código, três plataformas" do perfil: um card de vidro
+em cima e três aparelhos embaixo (iPhone, MacBook com a web e Android),
+ligados por traçados de circuito. Gera assets/plataformas.svg.
 
 A tampa do MacBook abre como num notebook de verdade: a mesma curva e o mesmo
 tempo de uma rotação 3D, feitos em 2D (SVG como imagem não tem 3D).
@@ -18,7 +18,7 @@ import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
-from tema import ARREDONDADA, MONO, SANS, esc  # noqa: E402
+from tema import MONO, SANS, esc  # noqa: E402
 
 RAIZ = os.path.normpath(os.path.join(AQUI, ".."))
 SAIDA = os.environ.get("PLATAFORMAS_SAIDA", os.path.join(RAIZ, "assets", "plataformas.svg"))
@@ -31,7 +31,8 @@ APARELHOS = [  # (rótulo embaixo do aparelho)
     "Android · Google Play",
 ]
 
-W, H = 960, 624
+SUBIR = 50          # o card e os aparelhos sobem para ocupar o lugar do antigo ícone do topo
+W, H = 960, 624 - SUBIR
 CX = W / 2
 EASE_TAMPA = "cubic-bezier(.76,0,.24,1)"
 EASE_QUIQUE = "cubic-bezier(.34,1.56,.64,1)"
@@ -91,20 +92,6 @@ def cabecalho():
             f'{esc(SUBTITULO)}</text></g>')
 
 
-def icone_topo():
-    s, x, y = 64, CX - 32, 44
-    return (f'<g class="janela" style="animation-delay:.15s">'
-            f'<rect x="{x - 9}" y="{y - 9}" width="{s + 18}" height="{s + 18}" rx="24" fill="#FFFFFF" '
-            f'fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.16"/>'
-            f'<clipPath id="recorte-topo"><rect x="{x}" y="{y}" width="{s}" height="{s}" rx="16"/></clipPath>'
-            f'<g filter="url(#sombra-icone)"><rect x="{x}" y="{y}" width="{s}" height="{s}" rx="16" '
-            f'fill="url(#marca)"/></g>'
-            f'<rect x="{x}" y="{y}" width="{s}" height="{s / 2}" fill="url(#brilho)" '
-            f'clip-path="url(#recorte-topo)"/>'
-            f'<text class="arred" x="{CX}" y="{y + 45}" font-size="38" font-weight="800" fill="#FFFFFF" '
-            f'text-anchor="middle">E</text></g>')
-
-
 def card_central():
     ox, oy, ow, oh = CX - 168, 178, 336, 196
     ix, iy, iw, ih, r = ox + 12, oy + 12, ow - 24, oh - 24, 18
@@ -125,7 +112,7 @@ def card_central():
     borda = (f"M{ix + r},{iy} H{ix + iw - r} A{r},{r} 0 0 1 {ix + iw},{iy + r} V{iy + ih - r} "
              f"A{r},{r} 0 0 1 {ix + iw - r},{iy + ih} H{ix + r} A{r},{r} 0 0 1 {ix},{iy + ih - r} "
              f"V{iy + r} A{r},{r} 0 0 1 {ix + r},{iy} Z")
-    return (f'<g class="janela" style="animation-delay:.75s">'
+    return (f'<g class="janela" style="animation-delay:.25s">'
             f'<rect x="{ox}" y="{oy}" width="{ow}" height="{oh}" rx="28" fill="#FFFFFF" fill-opacity="0.03" '
             f'stroke="#FFFFFF" stroke-opacity="0.15"/>'
             f'<clipPath id="recorte-card"><rect x="{ix}" y="{iy}" width="{iw}" height="{ih}" rx="{r}"/>'
@@ -144,7 +131,7 @@ def card_central():
 def _regra_luz(perimetro):
     """A luz que corre pela borda do card; parada no canto de cima se reduzir movimento."""
     REGRAS.append(f"@keyframes luz{{from{{stroke-dashoffset:0}}to{{stroke-dashoffset:{-perimetro:.1f}}}}}"
-                  f".luz{{animation:luz 5s linear 1.3s infinite}}")
+                  f".luz{{animation:luz 5s linear .8s infinite}}")
     return ""
 
 
@@ -247,7 +234,6 @@ def macbook(atraso):
 CSS = f"""
 .sans{{font-family:{SANS}}}
 .mono{{font-family:{MONO}}}
-.arred{{font-family:{ARREDONDADA}}}
 @keyframes aparecer{{from{{opacity:0}}to{{opacity:1}}}}
 @keyframes abrir{{from{{opacity:0;transform:translateY(10px) scale(.96)}}to{{opacity:1;transform:none}}}}
 @keyframes quique{{from{{opacity:0;transform:translateY(26px) scale(.85)}}to{{opacity:1;transform:none}}}}
@@ -272,7 +258,6 @@ REDUZIR_MOVIMENTO = (
 def desenhar():
     REGRAS.clear()
     logos = plataformas()
-    d1, c1 = caminho([(CX, 126), (CX, 178)])
     esq, ce = caminho([(CX - 168, 276), (CX - 252, 276), (CX - 302, 326), (CX - 302, 404)])
     meio, cm = caminho([(CX, 374), (CX, 404)])
     dir_, cd = caminho([(CX + 168, 276), (CX + 252, 276), (CX + 302, 326), (CX + 302, 404)])
@@ -287,8 +272,6 @@ def desenhar():
         '<radialGradient id="fade"><stop offset=".3" stop-color="#FFFFFF"/>'
         '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>'
         f'<mask id="esmaecer"><rect width="{W}" height="{H}" fill="url(#fade)"/></mask>'
-        '<linearGradient id="marca" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A84FF"/>'
-        '<stop offset=".55" stop-color="#5E5CE6"/><stop offset="1" stop-color="#BF5AF2"/></linearGradient>'
         '<linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1">'
         '<stop offset="0" stop-color="#FFFFFF" stop-opacity=".3"/>'
         '<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'
@@ -318,19 +301,19 @@ def desenhar():
         defs,
         '<g clip-path="url(#cartao)">',
         fundo(), cabecalho(),
-        desenha_linha(d1, c1, 0.45, 0.35, 0),
-        desenha_linha(esq, ce, 1.05, 0.55, 1),
-        desenha_linha(meio, cm, 1.05, 0.3, 2),
-        desenha_linha(dir_, cd, 1.05, 0.55, 3),
-        icone_topo(), card_central(),
-        moldura(CX - 302, APARELHOS[0], 1.2),
-        moldura(CX, APARELHOS[1], 1.2),
-        moldura(CX + 302, APARELHOS[2], 1.2),
-        no(CX - 302, 404, 1.6), no(CX, 404, 1.4), no(CX + 302, 404, 1.6),
-        celular(CX - 302, "ios", 1.55, logos),
-        macbook(1.6),
-        celular(CX + 302, "android", 1.75, logos),
-        "</g></svg>",
+        f'<g transform="translate(0,{-SUBIR})">',
+        desenha_linha(esq, ce, 0.55, 0.55, 1),
+        desenha_linha(meio, cm, 0.55, 0.3, 2),
+        desenha_linha(dir_, cd, 0.55, 0.55, 3),
+        card_central(),
+        moldura(CX - 302, APARELHOS[0], 0.7),
+        moldura(CX, APARELHOS[1], 0.7),
+        moldura(CX + 302, APARELHOS[2], 0.7),
+        no(CX - 302, 404, 1.1), no(CX, 404, 0.9), no(CX + 302, 404, 1.1),
+        celular(CX - 302, "ios", 1.05, logos),
+        macbook(1.1),
+        celular(CX + 302, "android", 1.25, logos),
+        "</g></g></svg>",
     ]
     partes[2] = f"<style>{CSS}{''.join(REGRAS)}{REDUZIR_MOVIMENTO}</style>"
     return "".join(partes)
