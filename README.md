@@ -26,7 +26,6 @@ Apps para iPhone, Android e web, do banco de dados até a App Store, com agentes
 <a href="https://www.linkedin.com/in/enzo-rodrigues/"><img src="./assets/botoes/linkedin.svg" alt="LinkedIn" /></a>
 <a href="mailto:enzorodrigues272@gmail.com"><img src="./assets/botoes/email.svg" alt="E-mail" /></a>
 <a href="https://www.instagram.com/_enzooyy_/"><img src="./assets/botoes/instagram.svg" alt="Instagram" /></a>
-<a href="https://gnsolutions.com.br"><img src="./assets/botoes/gnsolutions.svg" alt="GN Solutions" /></a>
 
 <br /><br />
 
@@ -59,7 +58,7 @@ Uso IA como ferramenta de engenharia, não só como autocomplete. Crio meus pró
 
 - **[MoneyFin AI](https://moneyfin.ai)** · Controle financeiro pessoal com IA: contas, cartões, orçamentos, metas, assistente e sincronização bancária via Open Finance. Versão web e app [na App Store](https://apps.apple.com/br/app/moneyfin-ai/id6761278897). Sou o principal desenvolvedor do app e do web. <sub>Stack: React, Node.js, Express, PostgreSQL, Drizzle, Stripe, API da OpenAI · app em Expo e React Native, com compras in-app e OTA</sub>
 - **[Clerum](https://clerum.ai)** · Plataforma de gestão para igrejas: membros, finanças, escalas, eventos e comunicação com a comunidade. Deploy por tag, com mais de 120 releases. O app do tesoureiro, em Expo, está em desenvolvimento. <sub>Stack: TypeScript, React, Express, PostgreSQL, Drizzle, Stripe, API da OpenAI, Docker, Traefik</sub>
-- **UpKeeper** · Gestão de manutenção, patrimônio e ordens de serviço, multi-tenant e em produção: abertura de OS por QR code, relatórios em PDF, leitura de checklist por foto e interface em português e espanhol. Hoje também desenho a próxima versão, em TypeScript. <sub>Stack: Python, Flask, SQLAlchemy, Alembic, PostgreSQL, Docker, Traefik</sub>
+- **[upkeeper](https://upkeeper.com.br)** · Gestão de manutenção, patrimônio e ordens de serviço, multi-tenant e em produção: abertura de OS por QR code, relatórios em PDF, leitura de checklist por foto e interface em português e espanhol. Hoje também desenho a próxima versão, em TypeScript. <sub>Stack: Python, Flask, SQLAlchemy, Alembic, PostgreSQL, Docker, Traefik</sub>
 - **TTES** · Projeto pessoal: IDE nativa para macOS que roda agentes de código (Claude Code e Codex) em paralelo, um git worktree por tarefa. Os terminais dos agentes continuam vivos mesmo com o app fechado. <sub>Stack: Swift 6, SwiftUI, AppKit, SwiftTerm, GRDB</sub>
 - **GN Quality Gate** · Ratchet de métricas no CI: nenhum PR pode piorar erros de lint e de tipos, duplicação ou tamanho de arquivo, e a cobertura só sobe. Roda como GitHub Action e como plugin do Claude Code nos projetos da GN. <sub>Stack: Node.js, GitHub Actions, ESLint, tsc, Vitest, jscpd, osv-scanner</sub>
 - **Ferramentas do time** · Design system com tokens e componentes compartilhados entre os produtos, plugin de commits semânticos com releases automáticas e monitoramento da infraestrutura como código. <sub>Stack: React, Tailwind, tsup, Docker Compose, Grafana, Prometheus, Loki</sub>
