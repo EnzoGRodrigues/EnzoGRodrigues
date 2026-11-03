@@ -2,17 +2,19 @@
   README do perfil de Enzo Rodrigues, no estilo do macOS.
   As imagens de assets/ saem dos scripts de scripts/:
     perfil.py        desenha a área de trabalho do topo e os botões (rode depois de mudar os textos)
+    plataformas.py   desenha o diagrama "um código, três plataformas"
     contribuicoes.py busca as contribuições pela API do GitHub
     grafico.py       desenha o gráfico de contribuições
   O gráfico é atualizado todo dia pelo workflow .github/workflows/atualizar-grafico.yml.
-  Cada imagem tem versão clara e escura; o <picture> escolhe conforme o tema de quem visita.
+  A área de trabalho e o gráfico têm versão clara e escura; o <picture> escolhe conforme o tema
+  de quem visita. O diagrama é azul nos dois temas.
 -->
 <div align="center">
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/desktop-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="./assets/desktop-light.svg" />
-  <img src="./assets/desktop-light.svg" width="860" alt="Área de trabalho no estilo macOS: janela Sobre o Enzo com foto, cargo e stack; Terminal com fastfetch e sobre.md; e um Dock com as tecnologias que eu uso" />
+  <img src="./assets/desktop-light.svg" width="860" alt="Área de trabalho no estilo macOS: janela Sobre o Enzo com o ícone E, cargo e stack; Terminal com fastfetch e sobre.md; e um Dock com as tecnologias que eu uso" />
 </picture>
 
 ## Enzo Rodrigues
@@ -25,6 +27,10 @@ Apps para iPhone, Android e web, do banco de dados até a App Store, com agentes
 <a href="mailto:enzorodrigues272@gmail.com"><img src="./assets/botoes/email.svg" alt="E-mail" /></a>
 <a href="https://www.instagram.com/_enzooyy_/"><img src="./assets/botoes/instagram.svg" alt="Instagram" /></a>
 <a href="https://gnsolutions.com.br"><img src="./assets/botoes/gnsolutions.svg" alt="GN Solutions" /></a>
+
+<br /><br />
+
+<img src="./assets/plataformas.svg" width="860" alt="Diagrama: o ícone E liga a um card de código, que se ramifica para três aparelhos: um iPhone (iOS, App Store), um MacBook que abre a tampa e mostra um app web, e um celular Android (Google Play)" />
 
 </div>
 
@@ -61,7 +67,7 @@ Uso IA como ferramenta de engenharia, não só como autocomplete. Crio meus pró
 
 ## Contato
 
-<a href="https://www.linkedin.com/in/enzo-rodrigues/">LinkedIn</a> · <a href="mailto:enzorodrigues272@gmail.com">enzorodrigues272@gmail.com</a> · <a href="https://www.instagram.com/_enzooyy_/">Instagram @_enzooyy_</a> · <a href="https://gnsolutions.com.br">GN Solutions</a>
+<a href="https://www.linkedin.com/in/enzo-rodrigues/">LinkedIn</a> · <a href="mailto:enzorodrigues272@gmail.com">enzorodrigues272@gmail.com</a> · <a href="https://www.instagram.com/_enzooyy_/">Instagram @&#95;enzooyy&#95;</a> · <a href="https://gnsolutions.com.br">GN Solutions</a>
 
 <div align="center">
 
