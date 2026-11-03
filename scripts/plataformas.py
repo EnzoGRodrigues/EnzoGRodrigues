@@ -49,18 +49,24 @@ def caminho(pontos):
     return d, comp
 
 
+# Regras de CSS geradas junto com o desenho (cada traço tem o seu comprimento). Tudo é
+# animação CSS, para "reduzir movimento" parar tudo: os traços ficam prontos e os pulsos somem.
+REGRAS = []
+
+
 def desenha_linha(d, comp, inicio, dur, n, cor="#AFC0FF", op=0.32):
     """Traço que se desenha uma vez e depois um pulso de luz que percorre em loop."""
-    fim = inicio + dur
-    return (f'<path d="{d}" fill="none" stroke="{cor}" stroke-opacity="{op}" stroke-width="1.4" '
-            f'stroke-dasharray="{comp:.1f}" stroke-dashoffset="0">'
-            f'<animate attributeName="stroke-dashoffset" values="{comp:.1f};{comp:.1f};0" '
-            f'keyTimes="0;{inicio / fim:.3f};1" dur="{fim:.2f}s" fill="freeze"/></path>'
-            f'<path d="{d}" fill="none" stroke="url(#pulso)" stroke-width="2.2" stroke-linecap="round" '
-            f'stroke-dasharray="26 {comp + 40:.1f}" stroke-dashoffset="26" opacity="0">'
-            f'<set attributeName="opacity" to="1" begin="{fim + 0.4 + n * 0.5:.2f}s"/>'
-            f'<animate attributeName="stroke-dashoffset" from="26" to="{-comp:.1f}" '
-            f'begin="{fim + 0.4 + n * 0.5:.2f}s" dur="2.6s" repeatCount="indefinite"/></path>')
+    pulso = inicio + dur + 0.4 + n * 0.5
+    REGRAS.append(f"@keyframes tracar{n}{{from{{stroke-dashoffset:{comp:.1f}}}to{{stroke-dashoffset:0}}}}"
+                  f".tracar{n}{{animation:tracar{n} {dur:.2f}s ease-out {inicio:.2f}s both}}"
+                  f"@keyframes pulso{n}{{from{{stroke-dashoffset:26;opacity:1}}"
+                  f"to{{stroke-dashoffset:{-comp:.1f};opacity:1}}}}"
+                  f".pulso{n}{{animation:pulso{n} 2.6s linear {pulso:.2f}s infinite}}")
+    return (f'<path class="traco tracar{n}" d="{d}" fill="none" stroke="{cor}" stroke-opacity="{op}" '
+            f'stroke-width="1.4" stroke-dasharray="{comp:.1f}" stroke-dashoffset="0"/>'
+            f'<path class="pulso pulso{n}" d="{d}" fill="none" stroke="url(#pulso)" stroke-width="2.2" '
+            f'stroke-linecap="round" stroke-dasharray="26 {comp + 40:.1f}" stroke-dashoffset="26" '
+            f'opacity="0"/>')
 
 
 def no(x, y, atraso):
@@ -130,10 +136,16 @@ def card_central():
             f'<rect x="{ix}" y="{iy}" width="{iw}" height="{ih / 2}" fill="url(#brilho)" opacity="0.5"/></g>'
             f'<text class="mono" x="{CX}" y="{iy + ih / 2 + 21}" font-size="60" font-weight="700" '
             f'fill="#E2E8FF" text-anchor="middle" filter="url(#sombra-icone)">{{ }}</text>'
-            f'<path d="{borda}" fill="none" stroke="url(#luz-borda)" stroke-width="2.4" stroke-linecap="round" '
-            f'stroke-dasharray="110 {perimetro - 110:.1f}">'
-            f'<animate attributeName="stroke-dashoffset" from="0" to="{-perimetro:.1f}" begin="1.3s" '
-            f'dur="5s" repeatCount="indefinite"/></path></g>')
+            f'<path class="luz" d="{borda}" fill="none" stroke="url(#luz-borda)" stroke-width="2.4" '
+            f'stroke-linecap="round" stroke-dasharray="110 {perimetro - 110:.1f}" stroke-dashoffset="0"/></g>'
+            + _regra_luz(perimetro))
+
+
+def _regra_luz(perimetro):
+    """A luz que corre pela borda do card; parada no canto de cima se reduzir movimento."""
+    REGRAS.append(f"@keyframes luz{{from{{stroke-dashoffset:0}}to{{stroke-dashoffset:{-perimetro:.1f}}}}}"
+                  f".luz{{animation:luz 5s linear 1.3s infinite}}")
+    return ""
 
 
 def moldura(cx, rotulo, atraso):
@@ -248,11 +260,17 @@ CSS = f"""
 .tampa{{animation:tampa 1.5s {EASE_TAMPA} both;transform-box:fill-box;transform-origin:50% 100%}}
 .base{{animation:base 1.5s {EASE_TAMPA} both;transform-box:fill-box;transform-origin:50% 50%}}
 .boot{{animation:apagar 1.3s ease-in both}}
-@media (prefers-reduced-motion:reduce){{.l,.janela,.aparelho,.tampa,.base{{animation:none}}.boot{{animation:none;opacity:0}}}}
 """
+# vem depois das REGRAS geradas, para vencer as regras de cada traço
+REDUZIR_MOVIMENTO = (
+    "@media (prefers-reduced-motion:reduce){"
+    ".l,.janela,.aparelho,.tampa,.base,.traco,.pulso,.luz{animation:none}"
+    ".boot{animation:none;opacity:0}}"
+)
 
 
 def desenhar():
+    REGRAS.clear()
     logos = plataformas()
     d1, c1 = caminho([(CX, 126), (CX, 178)])
     esq, ce = caminho([(CX - 168, 276), (CX - 252, 276), (CX - 302, 326), (CX - 302, 404)])
@@ -296,7 +314,8 @@ def desenhar():
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
         f'role="img" aria-label="{esc(TITULO)}">',
         f"<title>{esc(TITULO)}: do código para iPhone, web e Android</title>",
-        f"<style>{CSS}</style>", defs,
+        "",  # <style>, preenchido no fim, depois que os traços registram as REGRAS
+        defs,
         '<g clip-path="url(#cartao)">',
         fundo(), cabecalho(),
         desenha_linha(d1, c1, 0.45, 0.35, 0),
@@ -313,6 +332,7 @@ def desenhar():
         celular(CX + 302, "android", 1.75, logos),
         "</g></svg>",
     ]
+    partes[2] = f"<style>{CSS}{''.join(REGRAS)}{REDUZIR_MOVIMENTO}</style>"
     return "".join(partes)
 
 
