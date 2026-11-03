@@ -14,7 +14,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/desktop-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="./assets/desktop-light.svg" />
-  <img src="./assets/desktop-light.svg" width="860" alt="Área de trabalho no estilo macOS: janela Sobre o Enzo com o ícone E, cargo e stack; Terminal com fastfetch e sobre.md; e um Dock com as tecnologias que eu uso" />
+  <img src="./assets/desktop-light.svg" width="860" alt="Área de trabalho no estilo macOS: janela Sobre o Enzo com um MacBook, cargo e stack; Terminal com fastfetch e sobre.md; e um Dock com as tecnologias que eu uso" />
 </picture>
 
 ## Enzo Rodrigues
