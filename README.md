@@ -61,7 +61,7 @@ Uso IA como ferramenta de engenharia, não só como autocomplete. Crio meus pró
 
 ## Contato
 
-<a href="https://www.linkedin.com/in/enzo-rodrigues/">LinkedIn</a> · <a href="mailto:enzorodrigues272@gmail.com">enzorodrigues272@gmail.com</a> · <a href="https://www.instagram.com/_enzooyy_/">Instagram @_enzooyy_</a> · <a href="https://gnsolutions.com.br">GN Solutions</a>
+<a href="https://www.linkedin.com/in/enzo-rodrigues/">LinkedIn</a> · <a href="mailto:enzorodrigues272@gmail.com">enzorodrigues272@gmail.com</a> · <a href="https://www.instagram.com/_enzooyy_/">Instagram @&#95;enzooyy&#95;</a> · <a href="https://gnsolutions.com.br">GN Solutions</a>
 
 <div align="center">
 
