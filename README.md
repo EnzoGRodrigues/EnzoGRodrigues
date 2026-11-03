@@ -57,7 +57,7 @@ Uso IA como ferramenta de engenharia, não só como autocomplete. Crio meus pró
 - **TTES** · Projeto pessoal: IDE nativa para macOS que roda agentes de código (Claude Code e Codex) em paralelo, um git worktree por tarefa. Os terminais dos agentes continuam vivos mesmo com o app fechado. <sub>Stack: Swift 6, SwiftUI, AppKit, SwiftTerm, GRDB</sub>
 - **GN Quality Gate** · Ratchet de métricas no CI: nenhum PR pode piorar erros de lint e de tipos, duplicação ou tamanho de arquivo, e a cobertura só sobe. Roda como GitHub Action e como plugin do Claude Code nos projetos da GN. <sub>Stack: Node.js, GitHub Actions, ESLint, tsc, Vitest, jscpd, osv-scanner</sub>
 - **Ferramentas do time** · Design system com tokens e componentes compartilhados entre os produtos, plugin de commits semânticos com releases automáticas e monitoramento da infraestrutura como código. <sub>Stack: React, Tailwind, tsup, Docker Compose, Grafana, Prometheus, Loki</sub>
-- **Sites e sistemas sob demanda** · Sites institucionais e ferramentas internas para empresas de cenografia, usinagem e software. <sub>Stack: Next.js, React, Vite, Tailwind, shadcn/ui, Sanity, PostgreSQL</sub>
+- **Sites e sistemas sob demanda** · Sites institucionais e ferramentas internas para empresas. <sub>Stack: Next.js, React, Vite, Tailwind, shadcn/ui, Sanity, PostgreSQL</sub>
 
 ## Contato
 
