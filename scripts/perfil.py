@@ -262,13 +262,8 @@ def terminal(t, x, y, w, h):
     x0 = x + 18
     y0 = y + 54
     out.append(prompt(t, x0, y0, "fastfetch", 0.8, 1))
-    # "logo" do fastfetch: um ícone de app com { }
-    lx, ly, lado = x0, y0 + 14, 96
-    out.append(f'<g class="l" style="animation-delay:1.45s">'
-               f'<rect x="{lx}" y="{ly}" width="{lado}" height="{lado}" rx="23" fill="url(#icone)"/>'
-               f'<text class="mono" x="{lx + lado / 2}" y="{ly + lado / 2 + 11}" font-size="32" '
-               f'font-weight="700" fill="#FFFFFF" text-anchor="middle">{{ }}</text></g>')
-    ix = lx + lado + 22
+    # fastfetch sem logo: só o texto, alinhado com o prompt
+    ix = x0
     iy = y0 + 22
     atraso = 1.5
     out.append(f'<text class="mono l" style="animation-delay:{atraso:.2f}s" x="{ix}" y="{iy}" '
@@ -405,9 +400,6 @@ def desenhar(nome_tema):
     defs_pp, papel = papel_de_parede(t)
     defs = (f"<defs>{defs_pp}{sombra('sombra', t['sombra_op'])}"
             f"{sombra('sombraicone', 0.22, dy=1, desvio=1.4)}"
-            f'<linearGradient id="icone" x1="0" y1="0" x2="1" y2="1">'
-            f'<stop offset="0" stop-color="#0A84FF"/><stop offset=".55" stop-color="#5E5CE6"/>'
-            f'<stop offset="1" stop-color="#BF5AF2"/></linearGradient>'
             f"{defs_macbook(nome_tema)}"
             f'<clipPath id="tela"><rect width="{W}" height="{H}" rx="18"/></clipPath></defs>')
     partes = [
